@@ -46,8 +46,8 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       remotes: {
-        erp: 'https://URL_ERP/remoteEntry.js',
-        entregas: 'https://URL_ENTREGAS/remoteEntry.js',
+        erp: 'https://mr-erp-davifsroberto.vercel.app/remoteEntry.js',
+        entregas: 'https://mt-entregas-davifsroberto.vercel.app/remoteEntry.js',
       },
       shared: share({
         '@angular/core': {
