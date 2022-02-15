@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "projects": {
+    "dashboard": "apps/dashboard",
+    "dashboard-e2e": "apps/dashboard-e2e",
+    "entregas": "apps/entregas",
+    "entregas-e2e": "apps/entregas-e2e",
+    "erp": "apps/erp",
+    "erp-e2e": "apps/erp-e2e",
+    "shared-data-access-user": "libs/shared/data-access-user"
+  }
+}

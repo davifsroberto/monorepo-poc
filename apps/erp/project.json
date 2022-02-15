@@ -1,0 +1,98 @@
+{
+  "projectType": "application",
+  "root": "apps/erp",
+  "sourceRoot": "apps/erp/src",
+  "prefix": "mottu-admin-mfe",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/erp",
+        "index": "apps/erp/src/index.html",
+        "main": "apps/erp/src/main.ts",
+        "polyfills": "apps/erp/src/polyfills.ts",
+        "tsConfig": "apps/erp/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/erp/src/favicon.ico", "apps/erp/src/assets"],
+        "styles": ["apps/erp/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/erp/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/erp/src/environments/environment.ts",
+              "with": "apps/erp/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/erp/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "erp:build:production"
+        },
+        "development": {
+          "browserTarget": "erp:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4202,
+        "publicHost": "http://localhost:4202"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "erp:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/erp/src/**/*.ts", "apps/erp/src/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/erp"],
+      "options": {
+        "jestConfig": "apps/erp/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

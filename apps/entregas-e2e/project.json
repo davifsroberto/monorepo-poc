@@ -1,0 +1,28 @@
+{
+  "root": "apps/entregas-e2e",
+  "sourceRoot": "apps/entregas-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/entregas-e2e/cypress.json",
+        "devServerTarget": "entregas:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "entregas:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/entregas-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["entregas"]
+}

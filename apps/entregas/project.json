@@ -1,0 +1,101 @@
+{
+  "projectType": "application",
+  "root": "apps/entregas",
+  "sourceRoot": "apps/entregas/src",
+  "prefix": "mottu-admin-mfe",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/entregas",
+        "index": "apps/entregas/src/index.html",
+        "main": "apps/entregas/src/main.ts",
+        "polyfills": "apps/entregas/src/polyfills.ts",
+        "tsConfig": "apps/entregas/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/entregas/src/favicon.ico", "apps/entregas/src/assets"],
+        "styles": ["apps/entregas/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/entregas/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/entregas/src/environments/environment.ts",
+              "with": "apps/entregas/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/entregas/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "entregas:build:production"
+        },
+        "development": {
+          "browserTarget": "entregas:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4201,
+        "publicHost": "http://localhost:4201"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "entregas:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/entregas/src/**/*.ts",
+          "apps/entregas/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/entregas"],
+      "options": {
+        "jestConfig": "apps/entregas/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
